@@ -5,10 +5,11 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOver;
 
 	bool gameHasEnded = false;
-
-	public float restartDelay = 1f;
-
+    public AudioSource bgSound;
+    public AudioSource gameEnd;
 	public GameObject completeLevelUI;
+
+    public string level;
 
 	public void CompleteLevel ()
 	{
@@ -20,14 +21,16 @@ public class GameManager : MonoBehaviour {
 		if (gameHasEnded == false)
 		{
 			gameHasEnded = true;
+            gameEnd.Play();
 			Debug.Log("GAME OVER");
+            bgSound.Pause();
             gameOver.SetActive(true);
 		}
 	}
 
 	public void Restart ()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene(level);
 	}
     public void quit()
     {

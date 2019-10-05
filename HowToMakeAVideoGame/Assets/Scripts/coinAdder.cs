@@ -8,6 +8,7 @@ public class coinAdder : MonoBehaviour
     private int count;
     public Text coinText;
     public Rigidbody rb;
+    public AudioSource coinAudio;
     private void Start()
     {
         count = 0;
@@ -21,14 +22,17 @@ public class coinAdder : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count++;
+            
             SetText(count);
+
 
         }
 
     }
     void SetText(int count)
     {
-        coinText.text = count.ToString(); 
+        coinText.text = count.ToString();
+        coinAudio.Play();
 
     }
 }
